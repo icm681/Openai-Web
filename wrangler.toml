@@ -2,7 +2,7 @@ name = "hayaseai"
 account_id = "622d0a34c71976734d5386f63a2eb35f"
 workers_dev = true
 main = "openai.js"
+compatibility_date = "2025-03-16"
 
 [vars]
 ENVIRONMENT = "production"
-compatibility_date = "2025-03-16"
