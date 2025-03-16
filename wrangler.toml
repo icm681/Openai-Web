@@ -1,11 +1,10 @@
 name = "hayaseai"
 account_id = "your-cloudflare-account-id"
 workers_dev = true
+main = "openai.js"  # Pastikan file ini benar-benar ada
 
 [vars]
 ENVIRONMENT = "production"
 
 [build]
 command = "npm install && npm run build"
-
-main = "./openai.js"  # Pastikan file ini ada
