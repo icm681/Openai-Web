@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayase Chatbot</title>
+    <title>Hayase AI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div id="chat-box">
-            <div class="message bot">
-                <span class="bot-name">Hayase</span>
-                <p>Halo! Saya Hayase, bagaimana saya bisa membantu?</p>
-            </div>
-        </div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Ketik pesan..." autofocus>
-            <button id="send-btn">➤</button>
-        </div>
-    </div>
+    <h1>Welcome to Hayase AI</h1>
+    <p>This is a simple AI-powered web application.</p>
+
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+    
+    <div id="response"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
