@@ -1,0 +1,8 @@
+{
+  "name": "hayaseai",
+  "version": "1.0.0",
+  "main": "openai.js",
+  "scripts": {
+    "build": "echo 'No build step needed'"
+  }
+}
