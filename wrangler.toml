@@ -1,14 +1,11 @@
 name = "hayaseai"
-type = "javascript"
 account_id = "your-cloudflare-account-id"
 workers_dev = true
 
 [vars]
 ENVIRONMENT = "production"
 
-[secrets]
-OPENAI_API_KEY = "your-secret-key"
-
 [build]
 command = "npm install && npm run build"
-upload.main = "./index.js"  # Pastikan ini sesuai dengan file utama proyekmu
+
+main = "./openai.js"  # Pastikan file ini ada
