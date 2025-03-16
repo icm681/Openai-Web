@@ -14,7 +14,7 @@ export default {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${env.OPENAI_API_KEY}`
+                    "Authorization": `Bearer ${env.OPENAI_API_KEY}` // Menggunakan API Key dari Secrets
                 },
                 body: JSON.stringify({
                     model: "gpt-4",
