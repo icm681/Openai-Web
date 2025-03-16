@@ -10,7 +10,11 @@ export default async function handler(req, res) {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
             },
-            body: JSON.stringify(req.body),
+            body: JSON.stringify({
+                model: "gpt-4",
+                messages: req.body.messages,
+                temperature: 0.7
+            })
         });
 
         const data = await response.json();
