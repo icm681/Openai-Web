@@ -1,0 +1,8 @@
+name = "hayaseai"
+type = "javascript"  # atau "webpack" jika menggunakan Webpack
+account_id = "your-cloudflare-account-id"
+workers_dev = true
+
+[build]
+command = "npm install && npm run build"
+upload.main = "./index.js"  # Pastikan ini sesuai dengan file utama proyekmu
