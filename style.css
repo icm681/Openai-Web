@@ -1,0 +1,89 @@
+/* lisensi icm681 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Kotak chat utama */
+.chat-container {
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Chat Box */
+#chat-box {
+    height: 450px;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+}
+
+/* Pesan */
+.message {
+    max-width: 80%;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Gaya chat user */
+.user {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+}
+
+/* Gaya chat bot */
+.bot {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.bot-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Input Area */
+.input-area {
+    display: flex;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+}
+
+button {
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+}
