@@ -1,51 +1,56 @@
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendButton = document.getElementById("send-btn");
-
-// Fungsi untuk menampilkan pesan di chatbox
-function appendMessage(role, text) {
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message", role);
-    messageDiv.innerHTML = role === "bot" 
-        ? `<span class="bot-name">Hayase</span><p>${text}</p>` 
-        : `<p>${text}</p>`;
-
-    chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-// Fungsi untuk mengirim pesan ke API Proxy
 async function sendMessage() {
-    const userMessage = userInput.value.trim();
-    if (!userMessage) return;
-    
-    appendMessage("user", userMessage);
-    userInput.value = "";
+    const userInput = document.getElementById("userInput");
+    const chatBox = document.getElementById("chat-box");
+
+    if (!userInput.value.trim()) return;
+
+    // Tambahkan pesan pengguna ke chat box
+    addMessage(userInput.value, "user");
 
     try {
-        const response = await fetch("/api/openai", { 
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+            },
             body: JSON.stringify({
-                model: "gpt-4",
-                messages: [{ role: "user", content: userMessage }],
-                temperature: 0.7
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: userInput.value }]
             })
         });
 
         const data = await response.json();
-        const botMessage = data.choices[0].message.content;
-        appendMessage("bot", botMessage);
+        addMessage(data.choices[0].message.content, "bot");
+
     } catch (error) {
-        appendMessage("bot", "Maaf, terjadi kesalahan.");
-        console.error(error);
+        addMessage("Error: " + error.message, "bot");
     }
+
+    userInput.value = "";
 }
 
-// Event listener tombol kirim dan Enter
-sendButton.addEventListener("click", sendMessage);
-userInput.addEventListener("keypress", function (event) {
+// Fungsi untuk menambahkan pesan ke chat box
+function addMessage(text, sender) {
+    const chatBox = document.getElementById("chat-box");
+    const messageDiv = document.createElement("div");
+
+    messageDiv.classList.add("message", sender);
+    if (sender === "bot") {
+        const botName = document.createElement("div");
+        botName.classList.add("bot-name");
+        botName.innerText = "Hayase AI";
+        messageDiv.appendChild(botName);
+    }
+
+    messageDiv.appendChild(document.createTextNode(text));
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll ke bawah
+}
+
+// Kirim pesan jika user menekan Enter
+function handleKeyPress(event) {
     if (event.key === "Enter") {
         sendMessage();
     }
-});
+}
