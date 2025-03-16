@@ -5,5 +5,4 @@ main = "openai.js"
 
 [vars]
 ENVIRONMENT = "production"
-
 compatibility_date = "2025-03-16"
