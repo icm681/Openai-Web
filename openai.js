@@ -1,26 +1,28 @@
 // pages/api/openai.js
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method Not Allowed' });
-    return;
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
-  const url = 'https://api.openai.com/v1/chat/completions';
+  const { model, messages } = req.body;
+
+  if (!model || !messages) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify({ model, messages }),
     });
 
     const data = await response.json();
-    res.status(200).json(data);
+    return res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }
