@@ -1,16 +1,14 @@
 export default {
   async fetch(request, env) {
-    console.log("Request Method:", request.method); // Cek metode request
-
     if (request.method !== "POST") {
-      return new Response(JSON.stringify({ error: "Method Not Allowed", method: request.method }), {
+      return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
         headers: { "Content-Type": "application/json" },
         status: 405
       });
     }
 
     const url = "https://api.openai.com/v1/chat/completions";
-    const apiKey = env.OPENAI_API_KEY; // Menggunakan environment variable
+    const apiKey = env.OPENAI_API_KEY; // Ambil API Key dari Environment Variables
 
     try {
       const requestBody = await request.json();
