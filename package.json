@@ -16,4 +16,8 @@
   "devDependencies": {
     "vercel": "latest"
   }
+  "scripts": {
+  "build": "next build && cp .next/routes-manifest.json ./",
+  "start": "next start"
+}
 }
