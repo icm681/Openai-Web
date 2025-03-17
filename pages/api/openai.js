@@ -1,12 +1,10 @@
-// pages/api/openai.js
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const { model, messages } = req.body;
-
-  if (!model || !messages) {
+  const { messages } = req.body;
+  if (!messages) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
@@ -17,7 +15,10 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
-      body: JSON.stringify({ model, messages }),
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages,
+      }),
     });
 
     const data = await response.json();
