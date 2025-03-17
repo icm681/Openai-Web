@@ -1,8 +1,15 @@
 {
-  "name": "hayaseai",
+  "name": "hayase_ai",
   "version": "1.0.0",
-  "main": "openai.js",
+  "private": true,
   "scripts": {
-    "build": "echo 'No build step needed'"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   }
 }
