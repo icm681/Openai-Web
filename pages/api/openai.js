@@ -1,4 +1,4 @@
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        const openai = new OpenAI({ apiKey });
 
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -26,16 +26,11 @@ export default async function handler(req, res) {
             temperature: 0.7,
         });
 
-        const aiMessage = response.choices?.[0]?.message?.content;
-        if (!aiMessage) {
-            console.warn("OpenAI response is empty");
-            return res.status(500).json({ error: "Empty response from OpenAI" });
-        }
+        const aiMessage = response.choices?.[0]?.message?.content || "No response from AI";
 
-        console.log("OpenAI Response:", aiMessage);
         return res.status(200).json({ message: aiMessage });
     } catch (error) {
         console.error("OpenAI API Error:", error);
-        return res.status(500).json({ error: "Internal Server Error", details: error.message });
+        return res.status(500).json({ error: "Failed to generate response" });
     }
 }
