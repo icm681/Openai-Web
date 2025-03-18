@@ -1,17 +1,22 @@
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
-  trailingSlash: true,
-  experimental: {
-    appDir: true, // Jika pakai Next.js 14 ke atas
+  swcMinify: true,
+  env: {
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false }; // Hindari masalah dengan fs di serverless
-    return config;
-  },
+  async headers() {
+    return [
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET,POST,OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type" }
+        ]
+      }
+    ];
+  }
 };
 
 module.exports = nextConfig;
