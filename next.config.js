@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: "standalone", // Agar lebih kompatibel di Vercel
+  output: "standalone",
   images: {
-    domains: ["your-image-domain.com"], // Ganti jika menggunakan Next.js Image
+    domains: ["your-image-domain.com"], // Sesuaikan kalau ada penggunaan Next.js Image
   },
 };
 
